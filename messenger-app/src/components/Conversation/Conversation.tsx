@@ -3,7 +3,7 @@ import BEMHelper from "react-bem-helper";
 import { Searchbar } from "./Searchbar";
 import { SendForm } from "./SendForm";
 import { ConversationContent } from "./ConversationContent";
-import { ConversationInterface } from "../../models/conversations";
+import { ConversationInterface, mockConversation } from "../../models/conversations";
 import { useRecoilState } from "recoil";
 import { activeConversationState, recentConversationsState } from "../../store/atoms";
 import useSWR from "swr";
@@ -58,14 +58,17 @@ export const Conversation = () => {
     setRecentConversations({ ...recentConversations, data: [updatedConversation, ...filteredConversations] });
   };
 
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  // if (error) return <div>failed to load</div>;
+  // if (!data) return <div>loading...</div>;
 
   return (
     <section {...classes()} title="Conversation">
       <h2 {...classes("title")}>Conversation</h2>
       <Searchbar />
-      <ConversationContent messages={activeConversation.data.messages} userParticipantId={activeConversation.userParticipantId} />
+      <ConversationContent
+        messages={data ? activeConversation.data.messages : mockConversation.messages}
+        userParticipantId={data ? activeConversation.userParticipantId : 1}
+      />
       <SendForm onSendMessage={sendMessage} />
     </section>
   );

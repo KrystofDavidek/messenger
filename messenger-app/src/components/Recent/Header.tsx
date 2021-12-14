@@ -10,7 +10,7 @@ export const Header = () => {
       <div {...classes("notification")}>
         <span {...classes("title")}>Messages</span>
         <div {...classes("notification-icon")}>
-          <span {...classes("notification-count")}>3</span>
+          <span {...classes("notification-count")}>1</span>
         </div>
       </div>
       <nav {...classes("notification-navigation")}>
